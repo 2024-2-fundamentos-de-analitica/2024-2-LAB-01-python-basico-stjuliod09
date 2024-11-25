@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 """
 Escriba el codigo que ejecute la accion solicitada en cada pregunta. Los
 datos requeridos se encuentran en el archivo data.csv. En este laboratorio
@@ -26,3 +28,23 @@ def pregunta_04():
      ('12', 3)]
 
     """
+    month_counts = defaultdict(int)
+
+
+    with open('files/input/data.csv', 'r') as file:
+        for line in file:
+
+            columns = line.strip().split()
+            
+            date = columns[2]
+
+            month = date.split('-')[1]
+            
+            month_counts[month] += 1
+
+    result = sorted(month_counts.items())
+
+    return result
+
+if __name__ == '__main__':
+    print(pregunta_04())    

@@ -15,3 +15,23 @@ def pregunta_12():
     {'A': 177, 'B': 187, 'C': 114, 'D': 136, 'E': 324}
 
     """
+    with open("files/input/data.csv", "r") as file:
+        data = file.readlines()
+    
+    result = {}
+    for line in data:
+        columns = line.strip().split()
+        letter = columns[0]
+        col5_values = columns[4].split(',')
+        
+        col5_sum = sum(int(item.split(':')[1]) for item in col5_values)
+        
+        if letter in result:
+            result[letter] += col5_sum
+        else:
+            result[letter] = col5_sum
+    
+    return dict(sorted(result.items()))
+
+if __name__ == '__main__':
+    print(pregunta_12())

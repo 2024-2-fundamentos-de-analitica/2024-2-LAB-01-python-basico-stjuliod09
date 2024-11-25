@@ -17,6 +17,19 @@ def pregunta_10():
      ...
      ('E', 2, 3),
      ('E', 3, 3)]
-
-
     """
+    with open("files/input/data.csv", "r") as file:
+        data = file.readlines()
+    
+    result = []
+    for line in data:
+        columns = line.strip().split()
+        letter = columns[0]
+        col4_count = len(columns[3].split(','))
+        col5_count = len(columns[4].split(','))
+        result.append((letter, col4_count, col5_count))
+    
+    return result
+
+if __name__ == '__main__':
+    print(pregunta_10())
